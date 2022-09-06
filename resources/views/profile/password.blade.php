@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-    {{-- @dd($user) --}}
     <main class="form-signin">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-5">

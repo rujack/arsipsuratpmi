@@ -20,7 +20,7 @@
                 <div class="col-sm-12 col-md-6 ps-5">
                     <form action="/profile" method="POST">
                         @csrf
-                        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+                        <h1 class="h3 mb-3 fw-normal">Data Akun</h1>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control shadow-sm @error('id_anggota') is-invalid @enderror"
                                 name="id_anggota" placeholder="id_anggota" value="{{ $user->id_anggota }}">
@@ -98,14 +98,9 @@
 
                             <button class="mb-4 w-100 btn btn-outline-primary" type="submit">Simpan</button>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="text-center">
-        <h1>{{ Auth::user()->role }}</h1>
     </div>
 @endsection

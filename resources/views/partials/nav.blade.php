@@ -1,8 +1,8 @@
-<nav class="navbar bg-danger navbar-expand d-flex flex-column align-item-start offcanvas offcanvas-start"
-    data-bs-backdrop="static" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" id="sidebar">
+<nav class="navbar bg-danger navbar-expand d-flex flex-column align-item-start offcanvas offcanvas-start" tabindex="-1"
+    id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" id="sidebar">
     <div class="offcanvas-header ms-auto text-white">
-        <button type="button" class=" btn btn-outline-danger text-white fs-5 " data-bs-dismiss="offcanvas" aria-label="Close"><i
-                class="fas fa-times"></i></button>
+        <button type="button" class=" btn btn-outline-danger text-white fs-5 " data-bs-dismiss="offcanvas"
+            aria-label="Close"><i class="fas fa-times"></i></button>
     </div>
     <a href="#" class="navbar-brand text-light mt-1">
         <div class="display-5 font-weight-bold text-center"><img src="/img/logopmi_w.png" class="w-50" alt="">
@@ -27,19 +27,26 @@
                 <li><a href="/pengajuan/arsip" class="dropdown-item text-light ps-5 p-2">Tolak</a></li>
             </ul>
         </li>
+        @if (auth()->user()->role == 'admin')
+            <li class="nav-item w-100">
+                <a href="/user"
+                    class="nav-link text-light ps-4 {{ Request::is('user*') ? 'bg-white bg-opacity-25 disabled' : '' }}">User</a>
+            </li>
+        @endif
         <li class="nav-item w-100">
-            <a href="/user" class="nav-link text-light ps-4 {{ Request::is('user*') ? 'bg-white bg-opacity-25 disabled' : '' }}">User</a>
+            <a href="/profile"
+                class="nav-link text-light ps-4 {{ Request::is('profile*') ? 'bg-white bg-opacity-25 disabled' : '' }}">Profile</a>
         </li>
-        <li class="nav-item w-100">
-            <a href="/profile" class="nav-link text-light ps-4 {{ Request::is('profile*') ? 'bg-white bg-opacity-25 disabled' : '' }}">Profile</a>
-        </li>
-        <li class="nav-item w-100">
-            <a href="/help" class="nav-link text-light ps-4">Help</a>
-        </li>
+        @if (auth()->user()->role == 'admin')
+            <li class="nav-item w-100">
+                <a href="/logactivity" class="nav-link text-light ps-4">Log Activity</a>
+            </li>
+        @endif
         <li class="nav-item w-100 px-4">
             <form action="/logout" method="post">
                 @csrf
-                <button type="submit" role="button" class=" btn btn-outline-danger w-100 text-light ps-4 fs-5">Logout</button>
+                <button type="submit" role="button"
+                    class=" btn btn-outline-danger w-100 text-light ps-4 fs-5">Logout</button>
             </form>
         </li>
     </ul>

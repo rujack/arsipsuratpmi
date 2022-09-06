@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Models\Surat;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Http\Requests\SuratRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreSuratRequest;
 use App\Http\Requests\UpdateSuratRequest;
-use Illuminate\Support\Facades\Auth;
 
 class SuratController extends Controller
 {
@@ -20,6 +21,7 @@ class SuratController extends Controller
      */
     public function index()
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('surat.index', ['surats' => Surat::all()]);
     }
 
@@ -30,6 +32,7 @@ class SuratController extends Controller
      */
     public function create()
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('surat.create');
     }
 
@@ -52,8 +55,6 @@ class SuratController extends Controller
             'pengajuan' => 'boolean'
         ];
 
-
-
         $validateData = $request->validate($rules);
         // return $request;
         if ($request->file('file')) {
@@ -62,6 +63,7 @@ class SuratController extends Controller
 
         // $request->validated();
         Surat::create($validateData);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'POST', 'url' => request()->path()]);
         // return $validateData;
 
         return redirect('/surat')->with('success', 'Berhasil Menambah Surat');
@@ -75,6 +77,7 @@ class SuratController extends Controller
      */
     public function show(Surat $surat)
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('surat.view', ['surat' => $surat]);
     }
 
@@ -86,6 +89,7 @@ class SuratController extends Controller
      */
     public function edit(Surat $surat)
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('surat.edit', ['surat' => $surat]);
     }
 
@@ -110,7 +114,6 @@ class SuratController extends Controller
         ];
 
         $validatedData = $request->validate($rules);
-        // dd($rules);
         $file = storage_path('app/public/' . $surat->file);
 
         if ($request->file('file')) {
@@ -121,9 +124,9 @@ class SuratController extends Controller
         }
 
         Surat::where('id', $surat->id)->update($validatedData);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'PUT', 'url' => request()->path()]);
 
         return redirect('/surat')->with('success', 'Surat Berhasil diupdate');
-        // return dd($surat->no_surat);
     }
 
     /**
@@ -140,6 +143,7 @@ class SuratController extends Controller
             File::delete($file);
         }
         Surat::destroy($surat->id);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'DELETE', 'url' => request()->path()]);
 
         return redirect('/surat')->with('success', 'Surat Berhasil dihapus');
     }

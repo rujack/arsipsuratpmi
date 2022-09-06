@@ -4,5 +4,5 @@
 <form action="/surat/{{ $model->id }}" method="post" class="d-inline">
     @method('delete')
     @csrf
-    <button class="btn btn-sm btn-outline-danger" onclick="return confirm('are you sure ?');"><i class="fas fa-trash-alt"></i></button>
+    <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Apa kamu yakin ?');"><i class="fas fa-trash-alt"></i></button>
 </form>

@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title','Surat - Create')
+
 @section('container')
     <div class="row">
         <div class="col-12 bg-danger text-white p-3">
@@ -10,7 +12,7 @@
             </div>
         </div>
         <div class="col p-0">
-            <div class="card pt-3  bg-light">
+            <div class="card bg-light pt-3 rounded-0 rounded-bottom shadow-none">
                 <div class="card-body ">
                     <form action="/surat" method="post" enctype="multipart/form-data">
                         @csrf

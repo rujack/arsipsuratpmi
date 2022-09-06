@@ -1,17 +1,19 @@
 @extends('layouts.main')
 
+@section('title','User - View')
+
 @section('container')
     <div class="row">
         <div class="col-12 bg-danger text-white p-3">
             <div class="row">
                 <div class="col">
-                    <h3 class="text-center text-light">Lihat User</h3>
+                    <h3 class="text-center text-light">Detail User</h3>
                 </div>
             </div>
         </div>
         <div class="col p-0">
-            <div class="card pt-3 bg-light">
-                <div class="card-body">
+            <div class="card bg-light pt-3 rounded-0 rounded-bottom shadow-none">
+                <div class="card-body ">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-floating mb-3 ">

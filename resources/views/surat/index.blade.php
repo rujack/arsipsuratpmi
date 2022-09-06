@@ -5,6 +5,8 @@
         href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/datatables.min.css" />
 @endpush
 
+@section('title', 'Surat')
+
 @section('container')
     <div class="row">
         <div class="col-12 bg-danger text-white p-3">
@@ -24,23 +26,27 @@
                 {{ session('success') }}
             </div>
         @endif
-        <div class="col pt-3">
-            <table class="table table-striped table-bordered w-100 display " id="myTable">
-                <thead>
-                    <tr>
-                        <th scope="col">No. Surat</th>
-                        <th scope="col">Perihal</th>
-                        <th scope="col">Tipe Surat</th>
-                        <th scope="col">Pengirim</th>
-                        <th scope="col">Penerima</th>
-                        <th scope="col">Pengajuan</th>
-                        <th scope="col">File</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="col p-0">
+            <div class="card bg-light rounded-0 rounded-bottom shadow-none">
+                <div class="card-body ">
+                    <table class="table table-striped table-bordered w-100 display" id="myTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">No. Surat</th>
+                                <th scope="col">Perihal</th>
+                                <th scope="col">Tipe Surat</th>
+                                <th scope="col">Pengirim</th>
+                                <th scope="col">Penerima</th>
+                                <th scope="col">Pengajuan</th>
+                                <th scope="col">File</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -74,7 +80,7 @@
                 }, {
                     targets: [6],
                     orderable: false,
-                    class:"file"
+                    class: "file"
                 }, {
                     targets: [7],
                     class: "action",

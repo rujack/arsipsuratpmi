@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title','User - Create')
+
 @section('container')
     <div class="row">
         <div class="col-12 bg-danger text-white p-3">
@@ -10,8 +12,8 @@
             </div>
         </div>
         <div class="col p-0">
-            <div class="card pt-3 bg-light">
-                <div class="card-body">
+            <div class="card bg-light pt-3 rounded-0 rounded-bottom shadow-none">
+                <div class="card-body ">
                     <form action="/user" method="post">
                         @csrf
                         <div class="row">
@@ -32,8 +34,8 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-floating mb-3 ">
                                     <input type="text"
-                                        class="form-control shadow-sm @error('name') is-invalid @enderror"" id="name"
-                                        value="{{ old('name') }}" id="" placeholder="Nama" />
+                                        class="form-control shadow-sm @error('name') is-invalid @enderror" id="name"
+                                        value="{{ old('name') }}" name="name" placeholder="Nama" />
                                     <label class="form-label" for="">Nama</label>
                                     @error('name')
                                         <div class="invalid-feedback">
@@ -45,8 +47,8 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-floating mb-3 ">
                                     <input type="text"
-                                        class="form-control shadow-sm @error('email') is-invalid @enderror"" id="email"
-                                        value="{{ old('email') }}" id="email" placeholder="Email" />
+                                        class="form-control shadow-sm @error('email') is-invalid @enderror" id="email"
+                                        value="{{ old('email') }}" name="email" placeholder="Email" />
                                     <label class="form-label" for="email">Email</label>
                                     @error('email')
                                         <div class="invalid-feedback">
@@ -58,7 +60,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-floating mb-3 ">
                                     <input type="text"
-                                        class="form-control shadow-sm @error('password') is-invalid @enderror""
+                                        class="form-control shadow-sm @error('password') is-invalid @enderror"
                                         name="password" id="password" placeholder="Password" />
                                     <label class="form-label" for="password">Password</label>
                                     @error('password')

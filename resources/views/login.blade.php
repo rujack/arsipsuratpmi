@@ -60,12 +60,9 @@
 
                                         <div class="text-center pt-1 mb-5 pb-1 col-lg-5 col-md-6 mx-auto">
                                             <button class="btn btn-outline-danger w-100 btn-block fa-lg mb-3 shadow"
-                                                type="submit">Log
-                                                in</button>
+                                                type="submit">Log in</button>
                                         </div>
-
                                     </form>
-
                                 </div>
                             </div>
                         </div>

@@ -4,11 +4,11 @@
 <form action="/user/{{ $model->id }}" method="post" class="d-inline">
     @method('delete')
     @csrf
-    <button class="btn btn-sm btn-outline-danger ms-1" onclick="return confirm('are you sure ?');"><i
+    <button class="btn btn-sm btn-outline-danger ms-1" onclick="return confirm('Apa kamu yakin ?');"><i
             class="fas fa-trash"></i></button>
 </form>
 <form action="/user/reset/{{ $model->id }}" method="post" class="d-inline">
     @method('put')
     @csrf
-    <button class="btn btn-sm btn-outline-warning text-danger ms-1" onclick="return confirm('are you sure ?');"><i class="fas fa-undo"></i></button>
+    <button class="btn btn-sm btn-outline-warning text-danger ms-1" onclick="return confirm('Apa kamu yakin ? Password akan dirubah menjadi password123');"><i class="fas fa-undo"></i></button>
 </form>

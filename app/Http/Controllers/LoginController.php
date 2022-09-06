@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            LogActivity::create(['email' => $request['email'], 'method' => 'POST', 'url' => $request->path()]);
 
             return redirect()->intended('/');
         }
@@ -29,12 +31,11 @@ class LoginController extends Controller
             'loginError',
             'Email atau Password salah!!',
         );
-
-        // dd('berhasil login');
     }
 
     public function logout(Request $request)
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'POST', 'url' => request()->path()]);
         Auth::logout();
 
         $request->session()->invalidate();

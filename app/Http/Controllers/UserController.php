@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,6 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('user.index');
     }
 
@@ -25,6 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('user.create');
     }
 
@@ -49,6 +52,7 @@ class UserController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'POST', 'url' => request()->path()]);
         // return $request->all();
         // $request->session()->flash('success','Regristration Success');
 
@@ -63,6 +67,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('user.view', ['user' => $user]);
     }
 
@@ -74,6 +79,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'GET', 'url' => request()->path()]);
         return view('user.edit', ['user' => $user]);
     }
 
@@ -95,6 +101,7 @@ class UserController extends Controller
         ]);
 
         User::where('id', $user->id)->update($validatedData);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'PUT', 'url' => request()->path()]);
 
     //    $password = Hash::make('password123');
     //     User::where('id', $user->id)->update(['password' => $password]);
@@ -106,6 +113,7 @@ class UserController extends Controller
     {
         $password = Hash::make('password123');
         User::where('id', $user->id)->update(['password' => $password]);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'PUT', 'url' => request()->path()]);
 
         return redirect('/user')->with('success', 'Password Berhasil direset');
     }
@@ -119,6 +127,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
+        LogActivity::create(['email' => auth()->user()->email, 'method' => 'DELETE', 'url' => request()->path()]);
 
         return redirect('/user')->with('success', 'Surat Berhasil dihapus');
     }
